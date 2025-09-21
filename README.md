@@ -6,9 +6,7 @@ A lightweight, static memory pool allocator implementation in C, designed for em
 
 - Fixed-size block allocation with O(1) complexity
 - Thread-unsafe (external synchronization required for multi-threaded use)
-- Configurable pool size and block size
-- Comprehensive test suite
-- Memory-efficient implementation
+- Fragmentation cannot be handled without increasing algorithm complexity
 
 ## Table of Contents
 
