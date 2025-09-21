@@ -240,11 +240,6 @@ void pool_free(TPool_handle* p_handle, void* p_block)
  *        - The returned count represents the number of blocks that can be allocated
  *        - Time complexity is O(n) where n is POOL_NUM_BLOCKS
  *        - Thread safety must be handled by the caller if used in a multi-threaded context
- * 
- * @example
- *   TPool_handle* pool;
- *   pool_init(&pool);
- *   uint32 free = pool_get_free_count(pool);  // Returns POOL_NUM_BLOCKS
  */
  uint32 pool_get_free_count(const TPool_handle* p_handle) 
  {
