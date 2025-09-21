@@ -16,10 +16,11 @@
 
 /**
  * @brief   Initialize the static memory pool
- * @param   p_handle   Pointer to store the pool handle
+ * @param   p_handle   Pointer to the pool handle to be initialized
  * @return  None
  * @pre     Memory for the pool must be statically allocated
  * @post    Pool is ready for allocation requests
+ * @note    If p_handle is NULL, the function returns without taking any action
  */
 void pool_init(TPool_handle* p_handle);
 

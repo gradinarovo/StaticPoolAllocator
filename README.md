@@ -73,15 +73,35 @@ Edit `cfg/pool_cfg.h` to configure:
 
 ### `void pool_init(TPool_handle* p_handle)`
 Initialize the memory pool.
+- **Parameters:**
+  - `p_handle`: Pointer to the pool handle to be initialized
+- **Returns:** None
+- **Note:** If `p_handle` is NULL, the function returns without taking any action
 
 ### `void* pool_alloc(TPool_handle* p_handle)`
-Allocate a block from the pool. Returns `NULL` if no blocks are available.
+Allocate a block from the pool.
+- **Parameters:**
+  - `p_handle`: Pointer to the initialized pool handle
+- **Returns:** Pointer to the allocated block, or `NULL` if allocation fails
+- **Note:** Returns `NULL` if `p_handle` is NULL or no free blocks are available
 
 ### `void pool_free(TPool_handle* p_handle, void* p_block)`
 Free a previously allocated block.
+- **Parameters:**
+  - `p_handle`: Pointer to the pool handle
+  - `p_block`: Pointer to the block to free
+- **Returns:** None
+- **Note:** 
+  - If `p_handle` or `p_block` is NULL, the function returns immediately
+  - If `p_block` is not a valid pointer from this pool, the function returns
+  - The function is safe to call multiple times on the same block
 
 ### `uint32 pool_get_free_count(const TPool_handle* p_handle)`
 Get the number of free blocks available in the pool.
+- **Parameters:**
+  - `p_handle`: Pointer to the pool handle
+- **Returns:** Number of free blocks available for allocation
+- **Note:** Returns 0 if `p_handle` is NULL
 
 ## Examples
 

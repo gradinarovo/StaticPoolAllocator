@@ -100,9 +100,9 @@
  static sint32 find_first_free(const uint8* bitmap, uint32 num_blocks) 
  {
      uint32 i;
-     for (i = 0; i < num_blocks; i++) 
+     for (i = 0U; i < num_blocks; i++) 
      {
-         if (0u == test_bit(bitmap, i)) 
+         if (0U == test_bit(bitmap, i)) 
          {
              return (sint32)i;
          }
@@ -127,7 +127,7 @@
      if (NULL_PTR != p_handle)
      {
          /* Initialize all bytes of the pool handle to zero */
-         mem_set(p_handle, 0, sizeof(TPool_handle));
+         mem_set(p_handle, 0U, sizeof(TPool_handle));
      }
  }
  
@@ -249,16 +249,16 @@ void pool_free(TPool_handle* p_handle, void* p_block)
  uint32 pool_get_free_count(const TPool_handle* p_handle) 
  {
      uint32 i;
-     uint32 free_count = 0;
+     uint32 free_count = 0U;
      
      /* Check for NULL pointer */
      if (NULL_PTR == p_handle)
      {
-         return 0;
+         return 0U;
      }
      
      /* Count all free blocks */
-     for (i = 0; i < POOL_NUM_BLOCKS; i++)
+     for (i = 0U; i < POOL_NUM_BLOCKS; i++)
      {
          if (!test_bit(p_handle->bitmap, i))
          {
