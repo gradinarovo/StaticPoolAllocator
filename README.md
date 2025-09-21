@@ -68,7 +68,6 @@ make          # On Linux/macOS
 Edit `cfg/pool_cfg.h` to configure:
 - `POOL_NUM_BLOCKS`: Number of blocks in the pool
 - `POOL_BLOCK_SIZE`: Size of each block in bytes
-- `POOL_ALIGNMENT`: Memory alignment for blocks
 
 ## API Reference
 

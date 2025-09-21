@@ -139,7 +139,6 @@
  * 
  * @note  - Returns NULL if p_handle is NULL or no free blocks are available
  *        - The allocated block is marked as used in the bitmap
- *        - The returned pointer is aligned according to POOL_ALIGNMENT
  *        - The memory content is not initialized
  *        - Thread safety must be handled by the caller if used in a multi-threaded context
  */
