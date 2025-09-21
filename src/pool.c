@@ -18,7 +18,7 @@
  *          Example: For 10 blocks: (10 + 7) / 8 = 17/8 = 2.125 → 2 bytes (16 bits)
  *                   For 16 blocks: (16 + 7) / 8 = 23/8 = 2.875 → 2 bytes (16 bits)
  */
-#define BITMAP_BYTES ((POOL_NUM_BLOCKS + 7) / 8)
+#define BITMAP_BYTES ((POOL_NUM_BLOCKS + (BITS_PER_BYTE - 1U)) / BITS_PER_BYTE)
  
 /**
  * @brief Set a specific bit in the allocation bitmap
@@ -35,8 +35,8 @@
  */
  static void set_bit(uint8* bitmap, uint32 index) 
  {
-    uint32 byte_index = index / 8;   /* Find which byte contains the bit */
-    uint32 bit_offset = index % 8;   /* Find the bit's position within the byte */
+    uint32 byte_index = index / BITS_PER_BYTE;   /* Find which byte contains the bit */
+    uint32 bit_offset = index % BITS_PER_BYTE;   /* Find the bit's position within the byte */
     bitmap[byte_index] |= (1U << bit_offset);  /* Set the bit using bitwise OR */
 }
  
@@ -56,8 +56,8 @@
  */
  static void clear_bit(uint8* bitmap, uint32 index)
 {
-    uint32 byte_index = index / 8;                   /* Find which byte contains the bit */
-    uint32 bit_offset = index % 8;                   /* Find the bit's position within the byte */
+    uint32 byte_index = index / BITS_PER_BYTE;       /* Find which byte contains the bit */
+    uint32 bit_offset = index % BITS_PER_BYTE;       /* Find the bit's position within the byte */
     uint8  mask = (uint8)(1U << bit_offset);         /* Create mask for target bit */
     bitmap[byte_index] &= ~mask;                     /* Clear the bit using bitwise AND with inverted mask */
 }
@@ -79,8 +79,8 @@
  */
  static uint8 test_bit(const uint8* bitmap, uint32 index) 
  {
-    uint32 byte_index = index / 8;                   /* Find which byte contains the bit */
-    uint32 bit_offset = index % 8;                   /* Find the bit's position within the byte */
+    uint32 byte_index = index / BITS_PER_BYTE;       /* Find which byte contains the bit */
+    uint32 bit_offset = index % BITS_PER_BYTE;       /* Find the bit's position within the byte */
     return (bitmap[byte_index] >> bit_offset) & 1U;  /* Return the bit value (0 or 1) */
 }
  

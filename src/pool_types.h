@@ -12,6 +12,9 @@
 #include "std_types.h"
 #include "pool_cfg.h"
 
+/* Number of bits in a byte */
+#define BITS_PER_BYTE 8U
+
 /**
  * @brief   Memory pool handle structure
  * @details This structure contains the internal state of a memory pool.
@@ -19,7 +22,7 @@
  */
 typedef struct pool_handle {
     uint8  memory[POOL_NUM_BLOCKS * POOL_BLOCK_SIZE];  /**< Raw memory pool */
-    uint8  bitmap[(POOL_NUM_BLOCKS + 7) / 8];          /**< Allocation bitmap (1 bit per block) */
+    uint8  bitmap[(POOL_NUM_BLOCKS + (BITS_PER_BYTE - 1U)) / BITS_PER_BYTE];  /**< Allocation bitmap (1 bit per block) */
 } TPool_handle;
 
 #endif /* POOL_TYPES_H */
